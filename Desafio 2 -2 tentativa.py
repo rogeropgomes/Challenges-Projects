@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from collections import Counter
 # Definindo um contador iterativo
 class NumeroDeDepositos:
     def __init__(self, valor_inicial=0):
@@ -18,16 +18,17 @@ class NumeroDeDepositos:
 class Conta:
     def __init__(self):
         self.saldo = 0
-        self.contador_de_depositos = NumeroDeDepositos()
         self.transacoes = []
         self.data_criacao = datetime.today()
-
+        self.contador_de_depositos = NumeroDeDepositos()
+        self.numero_de_transacoes = Counter(datetime.today())
     def depositar(self, valor):
         if valor > 0:
             self.saldo += valor
             self.contador_de_depositos.incremento()
             self.data_de_transacao= datetime.today()
             self.transacoes.append(f"Depósito de R${valor:.2f}, feito em {datetime.today().strftime('%d/%m/%Y %H:%M:%S')}")
+        
 
         else:
             print("Depósito inválido")
